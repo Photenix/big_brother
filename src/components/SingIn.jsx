@@ -9,10 +9,12 @@ import { useDispatch } from 'react-redux';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { loginGoogleAsync, logoutAsync } from '../redux/actions/actionLogin';
+
 
 const SingIn = () => {
     const nav = useNavigate()
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const rePassword = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{5,}$/
     const formik = useFormik({
@@ -26,7 +28,6 @@ const SingIn = () => {
         }),
         onSubmit: ( data ) =>{
             console.log( data )
-            //dispatch( AgregarDatos( data ) )
             /*
                 puedo colocar la accion para que entre a
                 la base de datos
@@ -49,10 +50,10 @@ const SingIn = () => {
             </form>
 
             <div className="sing-other">
-                <FcGoogle size={30} />
+                <FcGoogle size={30} onClick={ ()=> dispatch( loginGoogleAsync() ) }/>
                 <FaFacebook size={30} color={'#2774c6'}/>
             </div>
-
+            <button onClick={()=>{ dispatch( logoutAsync() ) }}>Log Out</button>
             <h2>don’t have account? <a onClick={()=> nav('/sing-up')}>SingUp</a></h2>
         </div>
     );

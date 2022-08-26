@@ -1,4 +1,4 @@
-import React from 'react';
+import '../styles/sass/Select.scss'
 
 const Select = ({ array = [], name = 'default' }) => {
 
@@ -8,19 +8,27 @@ const Select = ({ array = [], name = 'default' }) => {
         <select name={ name } id="">
             {
                 array.map( e =>{
-                    let node
-                    
-                    if( first ){
-                        node = <option value={ e } selected >
+                    return (
+                        <option value={ e } selected >
                             { e }</option>
-                        first = false
-                    }else node = <option value={e}>{ e }</option>
-
-                    return node
+                    )
                 })
             }
         </select>
     );
 };
 
+
+const SelectLabel = ({ array = [], name = 'default' }) =>{
+    const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
+    return(
+        <div className="s-l">
+            <label htmlFor={name}>{capitalized}</label>
+            <Select array={array} name={name}/>
+        </div>
+    )
+}
+
+
 export default Select;
+export { SelectLabel }

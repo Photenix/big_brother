@@ -1,6 +1,8 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CreateClass from '../components/CreateClass';
+import CreateTeacher from '../components/CreateTeacher';
 import SingIn from '../components/SingIn';
 import SingUp from '../components/SingUp';
 import { authentication } from '../firebase.config';
@@ -36,11 +38,15 @@ const AppRouters = () => {
                     />
 				<Route path="/create-teacher" 
                     element={ 
-                        <PriR isAuth={isAuth}> <h1> ct </h1> </PriR>
+                        <PriR isAuth={isAuth}> 
+                            <CreateTeacher />
+                        </PriR>
                     }/>
 				<Route path="/create-class" 
                     element={ 
-                        <PriR isAuth={isAuth}> <h1> ct </h1> </PriR>
+                        <PriR isAuth={isAuth}>
+                            <CreateClass />
+                        </PriR>
                     }/>
 				<Route path="/search" element={ <h1> busca </h1> }/>
             </Routes>

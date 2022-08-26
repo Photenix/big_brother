@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const SingUp = () => {
 
     const nav = useNavigate()
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const rePassword = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{5,}$/
     const formik = useFormik({

@@ -9,12 +9,12 @@ export const logoutAsync = () => {
        const auth = getAuth();
        signOut(auth)
 
-       .then((user) => {
-         dispatch(logout)
-       })
-       .catch(error => {
-           console.log(error)
-       })
+        .then((user) => {
+            dispatch(logout)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
 export const logout = () => {
@@ -41,7 +41,7 @@ export const loginGoogleAsync =()=>{
         const auth = getAuth()
         signInWithPopup(auth, providerGoogle)
         .then(({user})=>{
-            dispatch(login(user.id, user.displayName))
+            dispatch(login(user.email, ''))
         })
         .catch(error=>{
             console.log(error)
