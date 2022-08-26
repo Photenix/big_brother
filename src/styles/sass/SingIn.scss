@@ -6,6 +6,8 @@
     padding: 80px 20px 20px;
     gap: 12px;
 
+    height: 100vh;
+
     .form{
         width: 70%;
         display: flex;
@@ -41,10 +43,27 @@
             height: 30px;
             border: none;
             background: var(--button);
+            margin-top: 12px;
 
             @media (max-width: 450px){
                 width: 150px;
             }
+        }
+    }
+
+    .sing-other{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 20px;
+    }
+
+    h2{
+        a{
+            cursor: pointer;
+            color: var(--secondary);
         }
     }
 }

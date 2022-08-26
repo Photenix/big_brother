@@ -2,6 +2,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SingIn from '../components/SingIn';
+import SingUp from '../components/SingUp';
 import { authentication } from '../firebase.config';
 import { PrivateRouter as PriR} from './PrivateRouter';
 import { PublicRouter as PubR } from './PublicRouter';
@@ -30,7 +31,7 @@ const AppRouters = () => {
                     />
 				<Route path="/sing-up" 
                     element={ 
-                        <PubR> <h1> sing up </h1> </PubR> 
+                        <PubR> <SingUp /> </PubR> 
                     }
                     />
 				<Route path="/create-teacher" 
