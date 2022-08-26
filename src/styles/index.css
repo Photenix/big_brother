@@ -12,10 +12,27 @@
     margin: 0;
 }
 
+input[type=text]{ 
+    background: var(--input); 
+    border: none;
+}
+input[type=password]{
+    background: var(--input); 
+    border: none;
+}
+
+button{
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
 h1{
     /* font-family: 'Inconsolata'; */
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 30px;
     line-height: 31px;
     display: flex;

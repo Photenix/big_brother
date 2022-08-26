@@ -9,7 +9,7 @@ const Select = ({ array = [], name = 'default' }) => {
             {
                 array.map( e =>{
                     let node
-
+                    
                     if( first ){
                         node = <option value={ e } selected >
                             { e }</option>

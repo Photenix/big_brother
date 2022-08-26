@@ -1,6 +1,7 @@
+import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Weather from '../components/Weather';
+import SingIn from '../components/SingIn';
 import { authentication } from '../firebase.config';
 import { PrivateRouter as PriR} from './PrivateRouter';
 import { PublicRouter as PubR } from './PublicRouter';
@@ -12,8 +13,7 @@ const AppRouters = () => {
     onAuthStateChanged( authentication, 
         user => setIsAuth( true ) )
 
-    /* const { isNavBar } = useContext( General )
-
+    /* 
     useEffect( () =>{
         //console.log( isNavBar );
     },[ isNavBar ]) */
@@ -25,7 +25,7 @@ const AppRouters = () => {
                 <Route path="/" element={ <h1> house </h1> }/>
 				<Route path="/sing-in" 
                     element={ 
-                        <PubR> <h1> sing up </h1> </PubR> 
+                        <PubR> <SingIn /> </PubR> 
                     }
                     />
 				<Route path="/sing-up" 
