@@ -6,15 +6,15 @@ import { typesLogin } from "../types/types"
 export const logoutAsync = () => {
     return(dispatch) => {
 
-       const auth = getAuth();
-       signOut(auth)
-
-        .then((user) => {
-            dispatch(logout)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        const auth = getAuth();
+        signOut(auth)
+            .then((user) => {
+                dispatch(logout)
+                console.log( 'he salido' )
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 }
 export const logout = () => {

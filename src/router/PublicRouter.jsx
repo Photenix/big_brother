@@ -4,5 +4,5 @@ export const PublicRouter =({isAuth, children})=>{
     const nav = useNavigate()
     return !isAuth
     ? children
-    : nav('/home')
+    : nav('/')
 }

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateClass from '../components/CreateClass';
 import CreateTeacher from '../components/CreateTeacher';
+import HomeNotRegister from '../components/home/HomeNotRegister';
+import HomeRegister from '../components/home/HomeRegister';
 import SingIn from '../components/SingIn';
 import SingUp from '../components/SingUp';
 import { authentication } from '../firebase.config';
@@ -14,8 +16,11 @@ const AppRouters = () => {
     const [ isAuth, setIsAuth ] = useState( false )
 
     onAuthStateChanged( authentication, 
-        user => setIsAuth( true ) )
-
+        user => {
+            user?.uid 
+                ?setIsAuth( true )
+                :''
+        })
     /* 
     useEffect( () =>{
         //console.log( isNavBar );
@@ -25,7 +30,12 @@ const AppRouters = () => {
         <BrowserRouter>
             
             <Routes>
-                <Route path="/" element={ <h1> house </h1> }/>
+                <Route path="/" element={ <h1> {
+                        isAuth 
+                            ?<HomeRegister />
+                            :<HomeNotRegister />
+                        } 
+                    </h1> }/>
 				<Route path="/sing-in" 
                     element={ 
                         <PubR> <SingIn /> </PubR> 
