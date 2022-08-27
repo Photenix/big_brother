@@ -24,6 +24,12 @@
         &:nth-child(2){ background: #C1DBF0; }
         &:nth-child(3){ background: rgba(255, 186, 97, 0.65); }
         &:nth-child(4){ background: #f18dd8a6; }
+
+        &:disabled { 
+            cursor: no-drop;
+            color: white;
+            background: rgb(117, 117, 117);
+        }
     }
     
 }

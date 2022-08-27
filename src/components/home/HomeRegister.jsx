@@ -1,18 +1,23 @@
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logoutAsync } from '../../redux/actions/actionLogin';
 import '../../styles/sass/BigButton.scss'
 
 const HomeRegister = () => {
 
     const dispatch = useDispatch()
+    const nav = useNavigate()
 
     return (
         <div className='big-button'>
-            <button>Crear monitor</button>
-            <button>Crear mentoria</button>
-            <button>Buscar mentoria</button>
+            <button onClick={ () =>  nav('/create-teacher') }>Crear monitor</button>
+            <button onClick={ () =>  nav('/create-class') }>Crear mentoria</button>
+            <button disabled >Buscar mentoria</button>
             <button 
-                onClick={ () => dispatch( logoutAsync() ) }>SingOut</button>
+                onClick={ () => {
+                        dispatch( logoutAsync() )
+                        location.reload();
+                    } }>Log Out</button>
         </div>
     );
 };

@@ -8,6 +8,7 @@ import * as yup from 'yup';
 
 
 import Select, { SelectLabel } from '../modules/Select';
+import ReturnHome from '../modules/common/ReturnHome';
 
 const CreateTeacher = () => {
     const nav = useNavigate()
@@ -57,6 +58,7 @@ const CreateTeacher = () => {
 
     return (
         <div className="create-m" style={{height:'100vh'}}>
+            <ReturnHome/>
             <h1>Crear monitor</h1>
             <form onSubmit={formik.handleSubmit}
                 onChange={ formik.handleChange}

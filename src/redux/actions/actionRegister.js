@@ -5,15 +5,15 @@ export const registerAsync =(email, pass, name)=>{
     return (dispatch)=>{
         const auth =getAuth()
         createUserWithEmailAndPassword(auth, email, pass)
-        .then(async({user})=>{
-            console.log(user)
-            await updateProfile(auth.currentUser, {displayName: name})
-             dispatch(registerSync(email, pass, name))
-         
-        })
-        .catch(error=>{
-            console.log(error)
-        })
+            .then(async({user})=>{
+                console.log(user)
+                await updateProfile( auth.currentUser, {displayName: name})
+                dispatch(registerSync(email, pass, name))
+            
+            })
+            .catch(error=>{
+                console.log(error)
+            })
     }
     
 }
@@ -21,9 +21,10 @@ export const registerAsync =(email, pass, name)=>{
 export const registerSync =(email, pass, name)=>{
     return{
         type: typesLogin.register,
-    payload:{
-        email,
-        pass,
-        name
-    }    }
+        payload:{
+            name,
+            email,
+            pass,
+        }
+    }
 }

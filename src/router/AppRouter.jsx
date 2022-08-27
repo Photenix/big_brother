@@ -38,12 +38,12 @@ const AppRouters = () => {
                     </h1> }/>
 				<Route path="/sing-in" 
                     element={ 
-                        <PubR> <SingIn /> </PubR> 
+                        <PubR isAuth={isAuth}> <SingIn /> </PubR> 
                     }
                     />
 				<Route path="/sing-up" 
                     element={ 
-                        <PubR> <SingUp /> </PubR> 
+                        <PubR isAuth={isAuth}> <SingUp /> </PubR> 
                     }
                     />
 				<Route path="/create-teacher" 

@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { loginGoogleAsync, logoutAsync } from '../redux/actions/actionLogin';
+import { loginGoogleAsync } from '../redux/actions/actionLogin';
 
 
 const SingIn = () => {
@@ -28,10 +28,6 @@ const SingIn = () => {
         }),
         onSubmit: ( data ) =>{
             console.log( data )
-            /*
-                puedo colocar la accion para que entre a
-                la base de datos
-            */
         },
     })
 
@@ -39,7 +35,7 @@ const SingIn = () => {
         <div className='sing-in-up'>
             <h1>Ingresar</h1>
             <form className='form' 
-                onSubmit={formik.handleSubmit}
+                onSubmit={ formik.handleSubmit }
                 onChange={ formik.handleChange}
                 >
                 <label htmlFor="email">Email</label>
@@ -48,12 +44,12 @@ const SingIn = () => {
                 <input type="password" name="pass" id="pass" />
                 <button type="submit">Sing In</button>
             </form>
-
             <div className="sing-other">
-                <FcGoogle size={30} onClick={ ()=> dispatch( loginGoogleAsync() ) }/>
+                <FcGoogle size={30} onClick={ ()=> {
+                        dispatch( loginGoogleAsync() )
+                    }}/>
                 <FaFacebook size={30} color={'#2774c6'}/>
             </div>
-            <button onClick={()=>{ dispatch( logoutAsync() ) }}>Log Out</button>
             <h2>don’t have account? <a onClick={()=> nav('/sing-up')}>SingUp</a></h2>
         </div>
     );

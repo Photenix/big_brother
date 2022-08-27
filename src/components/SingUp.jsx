@@ -25,15 +25,17 @@ const SingUp = () => {
             name: yup.string().min(3).required(),
             email: yup.string().email().required(),
             pass: yup.string().matches(rePassword).required(),
-            cpass: yup.string().matches(rePassword).required()
+            cpass: yup.string().required()
         }),
         onSubmit: ( data ) =>{
             console.log( data )
+            const { pass, cpass } = data
+            if( pass == cpass ){
+                console.log(true)
+            }else{
+                console.log( false )
+            }
             //dispatch( AgregarDatos( data ) )
-            /*
-                puedo colocar la accion para que entre a
-                la base de datos
-            */
         },
     })
 
@@ -41,8 +43,8 @@ const SingUp = () => {
         <div className='sing-in-up'>
             <h1>Crear cuenta</h1>
             <form className='form' 
-                onSubmit={formik.handleSubmit}
-                onChange={ formik.handleChange}
+                onSubmit={ formik.handleSubmit }
+                onChange={ formik.handleChange }
                 >
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" id="name" />
