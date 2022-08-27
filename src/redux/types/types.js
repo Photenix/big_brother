@@ -7,3 +7,8 @@ export const typesLogin ={
 export const typePlace ={
     add: '[zone] add'
 }
+
+export const typeTeacher = {
+    add_teacher: '[teacher] add_teacher',
+    find_teacher: '[teacher] find_teacher'
+}

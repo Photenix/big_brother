@@ -25,21 +25,6 @@ export const authentication = getAuth(app);
 
 export const providerGoogle = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
-  signInWithPopup(authentication, providerGoogle)
-    .then((result) => {
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const profilePic = result.user.photoURL;
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("fotoPerfil", photoURL);
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
 
 const providerF = new FacebookAuthProvider();
 
@@ -70,4 +55,4 @@ export const signInWithFacebook = () => {
 
 
 
-export const db = getFirestore();
+export const db = getFirestore( app );

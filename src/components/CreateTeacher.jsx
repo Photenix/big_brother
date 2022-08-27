@@ -9,6 +9,8 @@ import * as yup from 'yup';
 
 import Select, { SelectLabel } from '../modules/Select';
 import ReturnHome from '../modules/common/ReturnHome';
+import { createTeacher, findCedulaTeacher } from '../CRUD/teacher';
+import { clearInput } from '../tools/clearInput';
 
 const CreateTeacher = () => {
     const nav = useNavigate()
@@ -33,26 +35,36 @@ const CreateTeacher = () => {
         initialValues: {
             name: '',
             'last name': '',
-            materia: '',
-            semestre: '',
-            contacto: ''
+            cedula: '',
+            materia: 'tecnologia',
+            semestre: 10,
+            celular: ''
         },
         validationSchema: yup.object({
             name: yup.string().min(3).required(),
-            'last name': yup.string().required(),
+            'last name': yup.string(),
+            cedula: yup.number().required(),
             materia: yup.string().required(),
             semestre: yup.number().required(),
-            contacto: yup.string().required()
+            celular: yup.number().min(10).required()
         }),
         onSubmit: ( data ) =>{
             
-            data.materia = data.materia.toLowerCase()
-            console.log( data )
+            //data.materia = data.materia.toLowerCase()
+            data.celular = parseInt( data.celular )
+            data.semestre = parseInt( data.semestre )
+            data.cedula = parseInt( data.cedula )
+            
+            findCedulaTeacher( data.cedula )
+                .then( exist => {
+                    if( !exist ) {
+                        //console.log( data )
+                        createTeacher( data )
+                        clearInput()
+                    }
+                    else console.log('exist');
+                })
             //dispatch( AgregarDatos( data ) )
-            /*
-                puedo colocar la accion para que entre a
-                la base de datos
-            */
         },
     })
 
@@ -60,7 +72,7 @@ const CreateTeacher = () => {
         <div className="create-m" style={{height:'100vh'}}>
             <ReturnHome/>
             <h1>Crear monitor</h1>
-            <form onSubmit={formik.handleSubmit}
+            <form onSubmit={ formik.handleSubmit }
                 onChange={ formik.handleChange}
                 className="create-m">
                 <div className="flex-two">
@@ -73,7 +85,7 @@ const CreateTeacher = () => {
                     <SelectLabel array={materias} name='materia'/>
                     <SelectLabel array={semestre} name='semestre'/>
                 </div>
-                <InputLabel type='text' name='contacto'/>
+                <InputLabel type='text' name='celular'/>
                 <button type="submit">Crear</button>
             </form>
            
