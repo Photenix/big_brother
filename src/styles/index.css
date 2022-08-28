@@ -21,6 +21,10 @@ input[type=password]{
     border: none;
 } */
 
+body{
+    background: var(--background);
+}
+
 input{
     background: var(--input); 
     border: none;
@@ -75,7 +79,7 @@ p{
     /* font-family: 'Inter'; */
     font-style: normal;
     font-weight: 400;
-    font-size: 8px;
+    font-size: 10px;
     line-height: 10px;
     display: flex;
     align-items: center;

@@ -12,7 +12,7 @@ const HomeRegister = () => {
         <div className='big-button'>
             <button onClick={ () =>  nav('/create-teacher') }>Crear monitor</button>
             <button onClick={ () =>  nav('/create-class') }>Crear mentoria</button>
-            <button disabled >Buscar mentoria</button>
+            <button onClick={ () =>  nav('/search') } >Buscar mentoria</button>
             <button 
                 onClick={ () => {
                         dispatch( logoutAsync() )

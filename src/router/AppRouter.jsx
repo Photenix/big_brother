@@ -5,6 +5,7 @@ import CreateClass from '../components/CreateClass';
 import CreateTeacher from '../components/CreateTeacher';
 import HomeNotRegister from '../components/home/HomeNotRegister';
 import HomeRegister from '../components/home/HomeRegister';
+import SearchClass from '../components/SearchClass';
 import SingIn from '../components/SingIn';
 import SingUp from '../components/SingUp';
 import { authentication } from '../firebase.config';
@@ -58,7 +59,7 @@ const AppRouters = () => {
                             <CreateClass />
                         </PriR>
                     }/>
-				<Route path="/search" element={ <h1> busca </h1> }/>
+				<Route path="/search" element={ <SearchClass/> }/>
             </Routes>
         </BrowserRouter>
     );

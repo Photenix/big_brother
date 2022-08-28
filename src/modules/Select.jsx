@@ -5,7 +5,7 @@ const Select = ({ array = [], name = 'default' }) => {
     const first = true
 
     return (
-        <select name={ name } id="">
+        <select name={ name } id={ name }>
             {
                 array.map( e =>{
                     return (
