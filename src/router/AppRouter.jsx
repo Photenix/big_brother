@@ -68,7 +68,12 @@ const AppRouters = () => {
                             <CreateClass />
                         </PriR>
                     }/>
-				<Route path="/search" element={ <SearchClass/> }/>
+				<Route path="/search" 
+                    element={ 
+                        <PriR isAuth={isAuth}>
+                            <SearchClass/>
+                        </PriR>
+                    }/>
             </Routes>
         </BrowserRouter>
     );
