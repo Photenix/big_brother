@@ -1,5 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateClass from '../components/CreateClass';
 import CreateTeacher from '../components/CreateTeacher';
@@ -8,7 +9,9 @@ import HomeRegister from '../components/home/HomeRegister';
 import SearchClass from '../components/SearchClass';
 import SingIn from '../components/SingIn';
 import SingUp from '../components/SingUp';
+import { existUser } from '../CRUD/user';
 import { authentication } from '../firebase.config';
+import { login } from '../redux/actions/actionLogin';
 import { PrivateRouter as PriR} from './PrivateRouter';
 import { PublicRouter as PubR } from './PublicRouter';
 
@@ -16,12 +19,18 @@ const AppRouters = () => {
 
     const [ isAuth, setIsAuth ] = useState( false )
 
-    onAuthStateChanged( authentication, 
-        user => {
-            user?.uid 
-                ?setIsAuth( true )
-                :''
-        })
+    const dispatch = useDispatch()
+
+    useEffect( ()=> {
+        onAuthStateChanged( authentication, 
+            user => {
+                if(user?.uid) {
+                    setIsAuth( true )
+                    dispatch( login( user.email, '', user.displayName ))
+                }
+                else ''
+            })
+    },[])
     /* 
     useEffect( () =>{
         //console.log( isNavBar );

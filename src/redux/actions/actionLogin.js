@@ -5,7 +5,6 @@ import { typesLogin } from "../types/types"
 
 export const logoutAsync = () => {
     return(dispatch) => {
-
         const auth = getAuth();
         signOut(auth)
             .then((user) => {
@@ -24,16 +23,15 @@ export const logout = () => {
 }
 
 export const loginEmailyPassAsync =(email, password) =>{
-    return(dispatch)=>{
+    console.log( email, password )
         const auth = getAuth()
         signInWithEmailAndPassword(auth, email, password)
-        .then(({user})=>{
-            dispatch(login(user.email, user.password))
-        })
-        .catch(error=>{
-            console.log(error)
-        })
-    }
+            .then(({user})=>{
+                return( dispatch ) => dispatch(login(user.email, user.password))
+            })
+            .catch(error=>{
+                console.log(error)
+            })
 }
 
 export const loginGoogleAsync =()=>{
@@ -50,10 +48,11 @@ export const loginGoogleAsync =()=>{
 }
 
 
-export const login = (email, password) =>{
+export const login = (email, password, name) =>{
     return{
         type: typesLogin.login, 
         payload: {
+            name,
             email, 
             password
         }

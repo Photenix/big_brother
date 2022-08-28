@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
+import { registerAsync } from '../redux/actions/actionRegister';
 
 const SingUp = () => {
 
@@ -32,6 +33,8 @@ const SingUp = () => {
             const { pass, cpass } = data
             if( pass == cpass ){
                 console.log(true)
+                dispatch( registerAsync( data.email, 
+                    data.pass, data.name ))
             }else{
                 console.log( false )
             }

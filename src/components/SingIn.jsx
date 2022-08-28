@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { loginGoogleAsync } from '../redux/actions/actionLogin';
+import { loginEmailyPassAsync, loginGoogleAsync } from '../redux/actions/actionLogin';
 
 
 const SingIn = () => {
@@ -23,11 +23,13 @@ const SingIn = () => {
             pass: '',
         },
         validationSchema: yup.object({
-            email: yup.string().email().required(),
-            pass: yup.string().matches(rePassword).required()
+            email: yup.string(),
+            pass: yup.string()
         }),
         onSubmit: ( data ) =>{
-            console.log( data )
+            //console.log( data )
+            const { email, pass } = data
+            loginEmailyPassAsync( email, pass )
         },
     })
 

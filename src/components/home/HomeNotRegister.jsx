@@ -5,7 +5,7 @@ const HomeNotRegister = () => {
     const nav = useNavigate()
 
     return (
-        <div className='big-button'>
+        <div className='big-button not'>
             <button onClick={()=>nav('/sing-in')}>Sing In</button>
             <button onClick={()=>nav('/sing-up')}>Sing Up</button>
         </div>

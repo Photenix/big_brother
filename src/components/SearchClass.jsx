@@ -127,7 +127,6 @@ const SearchClass = () => {
             .catch( error => console.log(error))
     }
 
-
     useEffect(()=>{
         giveMeAll()
     },[])
