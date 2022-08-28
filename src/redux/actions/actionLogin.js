@@ -39,7 +39,7 @@ export const loginGoogleAsync =()=>{
         const auth = getAuth()
         signInWithPopup(auth, providerGoogle)
         .then(({user})=>{
-            dispatch(login(user.email, ''))
+            dispatch(login( user.email, '', user.displayName ))
         })
         .catch(error=>{
             console.log(error)

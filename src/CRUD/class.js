@@ -6,7 +6,7 @@ export const createClass = async( obj_class ) =>{
     const docRef  = await addDoc(collection(db, "monitorias"),{
         ...obj_class
     });
-    console.log("Document written with ID: ", docRef.id);
+    //console.log("Document written with ID: ", docRef.id);
 }
 
 export const getClass = async() =>{

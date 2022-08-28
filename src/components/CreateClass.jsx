@@ -56,7 +56,7 @@ const CreateClass = () => {
 
                 createClass( data )
 
-                console.log( data )
+                //console.log( data )
             }
             else{
                 alert( 'porfabor verificar profesor con cedula' )
