@@ -12,6 +12,7 @@ import ReturnHome from '../modules/common/ReturnHome';
 import { findCedulaTeacher } from '../CRUD/teacher';
 import { useState } from 'react';
 import { createClass } from '../CRUD/class';
+import salones from '../tools/salones';
 
 const CreateClass = () => {
     const nav = useNavigate()
@@ -32,17 +33,6 @@ const CreateClass = () => {
         semestre.push(i)
     }
 
-    const pisos = [ "A", "B", "C", "D" ]
-    const salones = []
-    for (let i = 0; i < pisos.length; i++) {
-        const piso = pisos[i];
-        const salonesPiso = []
-        for (let x = 0; x < 5; x++) {
-            salonesPiso[x] = piso + ( x + 1)
-        }
-        salones.push( ...salonesPiso )
-    }
-    
     const formik = useFormik({
         initialValues: {
             cedula: '',
@@ -111,7 +101,7 @@ const CreateClass = () => {
                 </div>
                 <input type="date" name="date" id="date" />
                 <input type="time" name="hour" id="hour" />
-                <SelectLabel array={salones} name='salon'/>
+                <SelectLabel array={ salones } name='salon'/>
                 <button type="submit">Crear</button>
             </form>
            

@@ -10,31 +10,7 @@ import { mentoria } from "../redux/actions/actionMentoria";
 import { useEffect, useState } from "react";
 
 
-const Card = ({ date, hour, materia, salon, semestre, cedula }) =>{
-    return(
-        <div className="card-class">
-            <img src="" alt={ `${materia}`} />
-            <div className="info">
-                <div className="info-name">
-                    <p>Encargad@</p>
-                    <h3>{ cedula }</h3>
-                </div>
-                <div className="info-date">
-                    <div className="time">
-                        <h3>{ date }</h3>
-                        <h3>{ hour }</h3>
-                    </div>
-                    <h2>{ salon }</h2>
-                    <h2>{ semestre }</h2>
-                </div>
-            </div>
-            <div className="d-e">
-                <button className="d">D</button>
-                <button className="e">E</button>
-            </div>
-        </div>
-    )
-}
+import CardMentoria from "../modules/CardMentoria";
 
 const SearchClass = () => {
 
@@ -123,6 +99,8 @@ const SearchClass = () => {
                 //console.log(arr)
                 dispatch( mentoria( arr ) )
                 setMentorias( arr )
+
+                document.getElementById('buscar').value = ''
             })
             .catch( error => console.log(error))
     }
@@ -144,11 +122,17 @@ const SearchClass = () => {
             <div className="container-class">
                 {
                     mentorias.map( e =>{
+                        const {
+                            date, hour,
+                            materia, salon,
+                            semestre, cedula,
+                            uid
+                        } = e 
                         //console.log( e )
                         return(
-                            <Card date={ e.date } 
-                                hour={ e.hour } materia={ e.materia }
-                                salon={ e.salon } semestre={ e.semestre } cedula={e.cedula}/>
+                            <CardMentoria date={ date } 
+                                hour={ hour } materia={ materia }
+                                salon={ salon } semestre={ semestre } cedula={ cedula } uid={ uid }/>
                         )
                     })
                 }

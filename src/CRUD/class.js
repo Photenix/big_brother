@@ -1,4 +1,4 @@
-import { getDocs, collection, addDoc, query, where } from "firebase/firestore";
+import { getDocs, collection, addDoc, query, where, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 
 export const createClass = async( obj_class ) =>{
@@ -16,7 +16,9 @@ export const getClass = async() =>{
     querySnapshot.forEach((doc) => {
         //console.log(doc.data());
         //console.log(`${doc.id} => ${doc.data()}`);
-        arr.push( doc.data() )
+        let x = doc.data()
+        x.uid = doc.id
+        arr.push( x )
     });
 
     return arr
@@ -40,4 +42,20 @@ export const filterClass = async( find, value ) =>{
     const data = await getClass()
     const filtrado = data.filter( obj => obj[find].includes(value) )
     return filtrado
+}
+
+
+export const deletClass = async( uid ) =>{
+    await deleteDoc( doc(db, 'monitorias', uid ) )
+}
+
+export const updateClass = async( uid, json ) =>{
+    //console.log( json, uid )
+    const docRef = doc(db, 'monitorias', uid );
+    /* await setDoc(docRef, {
+        ...json
+    }); */
+    await updateDoc(docRef, {
+        salon: json
+    });
 }
