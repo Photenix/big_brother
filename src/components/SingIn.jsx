@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { loginEmailyPassAsync, loginGoogleAsync } from '../redux/actions/actionLogin';
+import { loginEmailyPassAsync, loginGoogleAsync, signInWithFacebook } from '../redux/actions/actionLogin';
 
 
 const SingIn = () => {
@@ -50,7 +50,10 @@ const SingIn = () => {
                 <FcGoogle size={30} onClick={ ()=> {
                         dispatch( loginGoogleAsync() )
                     }}/>
-                <FaFacebook size={30} color={'#2774c6'}/>
+                <FaFacebook size={30} color={'#2774c6'}
+                    onClick={()=>{
+                        dispatch( signInWithFacebook() )
+                    }}/>
             </div>
             <h2>don’t have account? <a onClick={()=> nav('/sing-up')}>SingUp</a></h2>
         </div>

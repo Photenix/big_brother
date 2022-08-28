@@ -24,12 +24,10 @@ export const authentication = getAuth(app);
 
 
 export const providerGoogle = new GoogleAuthProvider();
-
-
-const providerF = new FacebookAuthProvider();
+export const providerFacebook = new FacebookAuthProvider();
 
 export const signInWithFacebook = () => {
-  signInWithPopup(authentication, providerF)
+  signInWithPopup(authentication, providerFacebook)
   .then((result) => {
     // The signed-in user info.
     const user = result.user;
@@ -37,7 +35,7 @@ export const signInWithFacebook = () => {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken = credential.accessToken;
-    console.log(result);
+    console.log(user);
     // ...
   })
   .catch((error) => {
