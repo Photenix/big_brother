@@ -62,7 +62,7 @@ const CreateTeacher = () => {
                         createTeacher( data )
                         clearInput()
                     }
-                    else console.log('exist');
+                    else alert('Este monitor ya existe');
                 })
             //dispatch( AgregarDatos( data ) )
         },

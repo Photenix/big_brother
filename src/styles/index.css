@@ -12,13 +12,24 @@
     margin: 0;
 }
 
-input[type=text]{ 
+/* input[type=text]{ 
     background: var(--input); 
     border: none;
 }
 input[type=password]{
     background: var(--input); 
     border: none;
+} */
+
+input{
+    background: var(--input); 
+    border: none;
+}
+
+input:disabled{
+    background: gray;
+    color: white;
+    text-align: center;
 }
 
 button{

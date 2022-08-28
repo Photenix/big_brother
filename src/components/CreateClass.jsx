@@ -9,10 +9,15 @@ import * as yup from 'yup';
 
 import { SelectLabel } from '../modules/Select';
 import ReturnHome from '../modules/common/ReturnHome';
+import { findCedulaTeacher } from '../CRUD/teacher';
+import { useState } from 'react';
+import { createClass } from '../CRUD/class';
 
 const CreateClass = () => {
     const nav = useNavigate()
     const dispatch = useDispatch();
+
+    const [ existTeacher, setExistTeacher ] = useState( false )
 
     const materias = [
         'Matematicas',
@@ -27,53 +32,86 @@ const CreateClass = () => {
         semestre.push(i)
     }
 
-
-    const rePassword = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{5,}$/
+    const pisos = [ "A", "B", "C", "D" ]
+    const salones = []
+    for (let i = 0; i < pisos.length; i++) {
+        const piso = pisos[i];
+        const salonesPiso = []
+        for (let x = 0; x < 5; x++) {
+            salonesPiso[x] = piso + ( x + 1)
+        }
+        salones.push( ...salonesPiso )
+    }
+    
     const formik = useFormik({
         initialValues: {
-            name: '',
-            'last name': '',
-            materia: '',
-            semestre: ''
+            cedula: '',
+            materia: 'tecnologia',
+            semestre: 10,
+            salon: 'D5'
         },
         validationSchema: yup.object({
-            name: yup.string().min(3).required(),
-            'last name': yup.string().required(),
+            cedula: yup.number().required(),
+            
             materia: yup.string().required(),
-            semestre: yup.number().required()
+            semestre: yup.number().required(),
+
+            date: yup.string().required(),
+            hour: yup.string().required(),
         }),
         onSubmit: ( data ) =>{
+            if( existTeacher ){
+                data.semestre = parseInt( data.semestre )
+                data.cedula = parseInt( data.cedula )
+
+                createClass( data )
+
+                console.log( data )
+            }
+            else{
+                alert( 'porfabor verificar profesor con cedula' )
+            }
+            //data.materia = data.materia.toLowerCase()
             
-            data.materia = data.materia.toLowerCase()
-            console.log( data )
             //dispatch( AgregarDatos( data ) )
-            /*
-                puedo colocar la accion para que entre a
-                la base de datos
-            */
         },
     })
+
+    const addData = () =>{
+        const x = document.getElementById('cedula')
+        const cedula =  parseInt(x.value)
+
+        findCedulaTeacher( cedula, true )
+            .then( exist => {
+                const name = document.getElementById('name')
+                name.value = exist.name
+                const lsName = document.getElementById('last name')
+                lsName.value = exist['last name']
+                setExistTeacher( true )
+            })
+    }
 
     return (
         <div className="create-m" style={{height:'100vh'}}>
             <ReturnHome/>
             <h1>Crear monitor</h1>
-            <form onSubmit={formik.handleSubmit}
-                onChange={ formik.handleChange}
+            <form onSubmit={ formik.handleSubmit }
+                onChange={ formik.handleChange }
                 className="create-m">
                 <label htmlFor="cedula">Cedula</label>
                 <input type="text" name="cedula" id="cedula" />
+                <button type='notFormik' onClick={ addData }>Verificar</button>
                 <div className="flex-two">
-                    <InputLabel type='text' name='name'/>
-                    <InputLabel type='text' name='last name'/>
+                    <InputLabel type='text' name='name' disabled={true}/>
+                    <InputLabel type='text' name='last name' disabled={true}/>
                 </div>
                 <div className="flex-two">
                     <SelectLabel array={materias} name='materia'/>
                     <SelectLabel array={semestre} name='semestre'/>
                 </div>
-                <input type="date" name="" id="" />
-                <input type="time" name="" id="" />
-                <SelectLabel array={materias} name='Salon'/>
+                <input type="date" name="date" id="date" />
+                <input type="time" name="hour" id="hour" />
+                <SelectLabel array={salones} name='salon'/>
                 <button type="submit">Crear</button>
             </form>
            
