@@ -11,14 +11,19 @@ export const createClass = async( obj_class ) =>{
 
 export const getClass = async() =>{
     const querySnapshot = await getDocs(collection(db, "monitorias"));
+
+    const arr = []
     querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-        console.log(`${doc.id} => ${doc.data()}`);
+        //console.log(doc.data());
+        //console.log(`${doc.id} => ${doc.data()}`);
+        arr.push( doc.data() )
     });
+
+    return arr
 }
 
-export const findCedulaClass = async( id, get = false ) =>{
-    const q = query(collection(db, 'monitores'), where('cedula', '==', id));
+export const filterExatliClass = async( find, value ) =>{
+    const q = query(collection(db, 'monitorias'), where( find, '==', value ));
     const querySnapshot = await getDocs( q );
 
     const arr = []
@@ -28,8 +33,11 @@ export const findCedulaClass = async( id, get = false ) =>{
         arr.push( doc.data() )
     });
     
-    if( get ){
-        return arr.length != 0 ?arr[0] :false
-    }
-    else { return arr.length != 0 ?true :false }
+    return arr
+}
+
+export const filterClass = async( find, value ) =>{
+    const data = await getClass()
+    const filtrado = data.filter( obj => obj[find].includes(value) )
+    return filtrado
 }

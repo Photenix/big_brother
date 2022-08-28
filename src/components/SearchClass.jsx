@@ -4,6 +4,9 @@ import '../styles/sass/SearchClass.scss'
 
 import { BiSearch } from "react-icons/bi";
 import ReturnHome from "../modules/common/ReturnHome";
+import { filterClass, filterExatliClass } from "../CRUD/class";
+import { useDispatch } from "react-redux";
+import { mentoria } from "../redux/actions/actionMentoria";
 
 
 const Card = () =>{
@@ -33,6 +36,8 @@ const Card = () =>{
 
 const SearchClass = () => {
 
+    const dispatch = useDispatch();
+
     const option = [
         'cedula',
         'materia',
@@ -41,11 +46,66 @@ const SearchClass = () => {
         'dia'
     ]
 
+    const aloneNumber = num =>{
+        try{
+            num = parseInt(num)
+            return num
+        }catch(e){
+            alert('solo ingrese numeros')
+        }
+        
+    }
+
+    const gf = ( value, filter ) => {
+        filterClass( value, filter )
+            .then( arr => {
+                //console.log(arr)
+                dispatch( mentoria( arr ) )
+            })
+            .catch( error => console.log(error))
+    }
+
     const filter = e =>{
         const select = document.getElementById('filter')
         const input = document.getElementById('buscar')
 
-        console.log( input, select );
+        //console.log( input.value, select.value );
+
+        let s;
+        switch( select.value ){
+            case 'cedula':
+                s = aloneNumber( input.value )
+                filterExatliClass( select.value, s )
+                    .then( arr => {
+                        //console.log(arr)
+                        dispatch( mentoria( arr ) )
+                    })
+                    .catch( error => console.log(error))
+                break
+            case 'semestre':
+                s = aloneNumber( input.value )
+
+                filterExatliClass( select.value, s )
+                    .then( arr => {
+                        //console.log(arr)
+                        dispatch( mentoria( arr ) )
+                    })
+                    .catch( error => console.log(error))
+                break
+            case 'dia':
+                gf( 'date', input.value )
+                break
+            case 'materia':
+                let v = input.value
+                const capitalized = v.charAt(0).toUpperCase() + v.slice(1);
+                gf( select.value, capitalized )
+                break
+            case 'salon':
+                gf( select.value, input.value )
+                break
+            default:
+                break
+        }
     }
     
 
@@ -58,7 +118,7 @@ const SearchClass = () => {
                 <input type="text" placeholder="Buscar" id="buscar"/>
                 <BiSearch size={30} className="lupa" onClick={ filter }/>
             </div>
-            <button>Clear filter</button>
+            <button>Show All</button>
             <div className="container-class">
                 <Card/>
                 <Card/>

@@ -9,7 +9,7 @@ export const loginReducers =(state = {}, action)=>{
                     ...action.payload
                 }
             }
-            case typesLogin.logout:
+        case typesLogin.logout:
             return{
                 user: ''
             }

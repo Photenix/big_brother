@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { loginReducers } from "../reducers/loginReducers";
+import { mentoriaReducers } from "../reducers/mentoriaReducers";
 import { registerReducers } from "../reducers/registerReducers";
 
 //TODO: recordar quitar luego
@@ -8,7 +9,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 
 export const reducers = combineReducers({
     login: loginReducers,
-    register: registerReducers
+    register: registerReducers,
+    mentoria: mentoriaReducers
 })
 
 //? Aqui estan todos los reducers que utilizaremos mas adelante
