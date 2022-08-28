@@ -4,31 +4,33 @@ import '../styles/sass/SearchClass.scss'
 
 import { BiSearch } from "react-icons/bi";
 import ReturnHome from "../modules/common/ReturnHome";
-import { filterClass, filterExatliClass } from "../CRUD/class";
-import { useDispatch } from "react-redux";
+import { filterClass, filterExatliClass, getClass } from "../CRUD/class";
+import { useDispatch, useSelector } from "react-redux";
 import { mentoria } from "../redux/actions/actionMentoria";
+import { useEffect, useState } from "react";
 
 
-const Card = () =>{
+const Card = ({ date, hour, materia, salon, semestre, cedula }) =>{
     return(
         <div className="card-class">
-            <img src="" alt="none" />
+            <img src="" alt={ `${materia}`} />
             <div className="info">
                 <div className="info-name">
                     <p>Encargad@</p>
-                    <h3>EL pepe</h3>
+                    <h3>{ cedula }</h3>
                 </div>
                 <div className="info-date">
                     <div className="time">
-                        <h3>Fecha</h3>
-                        <h3>Hora</h3>
+                        <h3>{ date }</h3>
+                        <h3>{ hour }</h3>
                     </div>
-                    <h2>4</h2>
+                    <h2>{ salon }</h2>
+                    <h2>{ semestre }</h2>
                 </div>
             </div>
             <div className="d-e">
-                <button>D</button>
-                <button>E</button>
+                <button className="d">D</button>
+                <button className="e">E</button>
             </div>
         </div>
     )
@@ -36,8 +38,11 @@ const Card = () =>{
 
 const SearchClass = () => {
 
+    const [ mentorias, setMentorias ] = useState([])
+
     const dispatch = useDispatch();
 
+    //const m = useSelector( state => state.mentorias)
     const option = [
         'cedula',
         'materia',
@@ -61,6 +66,7 @@ const SearchClass = () => {
             .then( arr => {
                 //console.log(arr)
                 dispatch( mentoria( arr ) )
+                setMentorias( arr )
             })
             .catch( error => console.log(error))
     }
@@ -79,6 +85,7 @@ const SearchClass = () => {
                     .then( arr => {
                         //console.log(arr)
                         dispatch( mentoria( arr ) )
+                        setMentorias( arr )
                     })
                     .catch( error => console.log(error))
                 break
@@ -89,6 +96,7 @@ const SearchClass = () => {
                     .then( arr => {
                         //console.log(arr)
                         dispatch( mentoria( arr ) )
+                        setMentorias( arr )
                     })
                     .catch( error => console.log(error))
                 break
@@ -109,6 +117,21 @@ const SearchClass = () => {
     }
     
 
+    const giveMeAll = () =>{
+        getClass( )
+            .then( arr => {
+                //console.log(arr)
+                dispatch( mentoria( arr ) )
+                setMentorias( arr )
+            })
+            .catch( error => console.log(error))
+    }
+
+
+    useEffect(()=>{
+        giveMeAll()
+    },[])
+
     return (
         <div className="mentoria">
             <ReturnHome/>
@@ -118,11 +141,18 @@ const SearchClass = () => {
                 <input type="text" placeholder="Buscar" id="buscar"/>
                 <BiSearch size={30} className="lupa" onClick={ filter }/>
             </div>
-            <button>Show All</button>
+            <button onClick={ giveMeAll }>Show All</button>
             <div className="container-class">
-                <Card/>
-                <Card/>
-                <Card/>
+                {
+                    mentorias.map( e =>{
+                        //console.log( e )
+                        return(
+                            <Card date={ e.date } 
+                                hour={ e.hour } materia={ e.materia }
+                                salon={ e.salon } semestre={ e.semestre } cedula={e.cedula}/>
+                        )
+                    })
+                }
             </div>
         </div>
     );
