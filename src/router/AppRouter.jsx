@@ -40,12 +40,12 @@ const AppRouters = () => {
         <BrowserRouter>
             
             <Routes>
-                <Route path="/" element={ <h1> {
+                <Route path="/" element={ <>{
                         isAuth 
                             ?<HomeRegister />
                             :<HomeNotRegister />
-                        } 
-                    </h1> }/>
+                        }
+                        </>}/>
 				<Route path="/sing-in" 
                     element={ 
                         <PubR isAuth={isAuth}> <SingIn /> </PubR> 

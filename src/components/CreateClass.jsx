@@ -84,11 +84,11 @@ const CreateClass = () => {
     return (
         <div className="create-m" style={{height:'100vh'}}>
             <ReturnHome/>
-            <h1>Crear monitor</h1>
+            <h1>Crear monitoria</h1>
             <form onSubmit={ formik.handleSubmit }
                 onChange={ formik.handleChange }
                 className="create-m">
-                <label htmlFor="cedula">Cedula</label>
+                <label htmlFor="cedula">Cédula</label>
                 <input type="text" name="cedula" id="cedula" />
                 <button type='notFormik' onClick={ addData }>Verificar</button>
                 <div className="flex-two">

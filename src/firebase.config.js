@@ -9,7 +9,7 @@ import {getFirestore, collection, getDocs, addDoc, collectionGroup} from 'fireba
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBlS34SdT24OlXbQWb_i3J2rE7d_BFqlXo",
+  apiKey: import.meta.env.VITE_API_KEY, // ENV variables
   authDomain: "weather-app-jm4p1r0.firebaseapp.com",
   projectId: "weather-app-jm4p1r0",
   storageBucket: "weather-app-jm4p1r0.appspot.com",
