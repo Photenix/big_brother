@@ -76,8 +76,8 @@ const CreateTeacher = () => {
                 onChange={ formik.handleChange}
                 className="create-m">
                 <div className="flex-two">
-                    <InputLabel type='text' name='name'/>
-                    <InputLabel type='text' name='last name'/>
+                    <InputLabel name='name'/>
+                    <InputLabel name='last name'/>
                 </div>
                 <label htmlFor="cedula">Cedula</label>
                 <input type="text" name="cedula" id="cedula" />

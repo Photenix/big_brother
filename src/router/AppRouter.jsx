@@ -28,7 +28,6 @@ const AppRouters = () => {
                     setIsAuth( true )
                     dispatch( login( user.email, '', user.displayName ))
                 }
-                else ''
             })
     },[])
     /* 

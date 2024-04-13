@@ -1,3 +1,18 @@
+@mixin init_page_button($init_position, $name){
+
+  @keyframes #{$name} {
+    from{
+      left: $init_position;
+    }
+    to{
+      left: 0;
+    }
+  }
+  
+  animation: $name 0.4s ease-in;
+  
+}
+
 .big-button {
   display: flex;
   flex-direction: column;
@@ -8,6 +23,7 @@
   height: 100vh;
   width: 100vw;
   button {
+    transition: all 0.5s;
     padding: 45px 20px;
     width: 200px;
     height: 150px;
@@ -19,6 +35,16 @@
     text-align: center;
     justify-content: center;
     border: none;
+
+    position: relative;
+
+    
+    &:nth-child(odd){
+      @include init_page_button(50%, to_left);
+    }
+    &:nth-child(even){
+      @include init_page_button(-50%, to_right);
+    }
 
     &:nth-child(3) {
       background: #98e7a4;
@@ -38,12 +64,17 @@
       color: white;
       background: rgb(117, 117, 117);
     }
+
+
+    &:hover {
+			width: 250px;
+			height: 200px;
+		}
   }
 }
 
 .not {
   button {
-		transition: all 0.5s;
 		
     &:nth-child(1) {
       background: #98e7a4;
@@ -52,10 +83,5 @@
     &:nth-child(2) {
 			background: #c1dbf0;
     }
-
-		&:hover {
-			width: 250px;
-			height: 200px;
-		}
   }
 }
