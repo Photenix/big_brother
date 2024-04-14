@@ -1,8 +1,8 @@
 import '../../styles/sass/InputLabel.scss'
 
-const InputLabel = ({ name, type='text', disabled= false }) => {
+const InputLabel = ({ name, type='text', disabled= false, label = name }) => {
 
-    const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
+    const capitalized = label.charAt(0).toUpperCase() + label.slice(1);
 
     return(
         <div className='in-la'>

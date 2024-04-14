@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateClass from '../components/CreateClass';
-import CreateTeacher from '../components/CreateTeacher';
+import CreateTeacher from '../components/Teacher/CreateTeacher';
 import HomeNotRegister from '../components/home/HomeNotRegister';
 import HomeRegister from '../components/home/HomeRegister';
 import SearchClass from '../components/SearchClass';
 import SingIn from '../components/SingIn';
 import SingUp from '../components/SingUp';
-import { existUser } from '../CRUD/user';
+
 import { authentication } from '../firebase.config';
 import { login } from '../redux/actions/actionLogin';
 import { PrivateRouter as PriR} from './PrivateRouter';
@@ -30,10 +30,6 @@ const AppRouters = () => {
                 }
             })
     },[])
-    /* 
-    useEffect( () =>{
-        //console.log( isNavBar );
-    },[ isNavBar ]) */
 
     return (
         <BrowserRouter>

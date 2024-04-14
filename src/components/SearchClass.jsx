@@ -3,7 +3,7 @@ import Select from "../modules/Select";
 import '../styles/sass/SearchClass.scss'
 
 import { BiSearch } from "react-icons/bi";
-import ReturnHome from "../modules/common/ReturnHome";
+import NavHome from "../modules/common/NavHome";
 import { filterClass, filterExatliClass, getClass } from "../CRUD/class";
 import { useDispatch, useSelector } from "react-redux";
 import { mentoria } from "../redux/actions/actionMentoria";
@@ -110,8 +110,9 @@ const SearchClass = () => {
     },[])
 
     return (
+        <>
+        <NavHome/>
         <div className="mentoria">
-            <ReturnHome/>
             <h1>Buscar mentoria</h1>
             <div className="search">
                 <Select  array={ option } name={'filter'}/>
@@ -138,6 +139,7 @@ const SearchClass = () => {
                 }
             </div>
         </div>
+        </>
     );
 };
 

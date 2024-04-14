@@ -1,0 +1,47 @@
+
+.nav_home[open]{
+    position: absolute;
+    background: #8d8d8d6e;
+    height: 100vh;
+    width: 500px;
+    animation: open_navbar 1s;
+
+    display: flex;
+    flex-direction: column;
+
+    button{
+        border-radius: 0;
+        border: none;
+        background: #7979797c;
+
+        font-size: large;
+        padding: 5px 0;
+
+        transition: background 0.2s;
+        
+        &:hover{
+            cursor: pointer;
+            background: #797979cb;
+        }
+    }
+}
+
+body:has( .nav_home[open] ){
+    overflow: hidden;
+}
+
+.nav_button{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+@keyframes open_navbar {
+    from{
+        width: 0px;
+    }
+    to{
+        width: 500px;
+    }
+}

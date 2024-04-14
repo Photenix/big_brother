@@ -8,7 +8,7 @@ import * as yup from 'yup';
 
 
 import { SelectLabel } from '../modules/Select';
-import ReturnHome from '../modules/common/ReturnHome';
+import ReturnHome from '../modules/common/NavHome';
 import { findCedulaTeacher } from '../CRUD/teacher';
 import { useState } from 'react';
 import { createClass } from '../CRUD/class';

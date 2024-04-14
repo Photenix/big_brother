@@ -1,5 +1,5 @@
-import InputLabel from '../modules/common/InputLabel';
-import  '../styles/sass/CreateM.scss'
+import InputLabel from '../../modules/common/InputLabel';
+import  '../../styles/sass/CreateM.scss'
 
 import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
@@ -7,10 +7,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup'; 
 
 
-import Select, { SelectLabel } from '../modules/Select';
-import ReturnHome from '../modules/common/ReturnHome';
-import { createTeacher, findCedulaTeacher } from '../CRUD/teacher';
-import { clearInput } from '../tools/clearInput';
+import Select, { SelectLabel } from '../../modules/Select';
+import NavHome from '../../modules/common/NavHome';
+import { createTeacher, findCedulaTeacher } from '../../CRUD/teacher';
+import { clearInput } from '../../tools/clearInput';
 
 const CreateTeacher = () => {
     const nav = useNavigate()
@@ -69,15 +69,16 @@ const CreateTeacher = () => {
     })
 
     return (
+        <>
+        <NavHome/>
         <div className="create-m" style={{height:'100vh'}}>
-            <ReturnHome/>
             <h1>Crear monitor</h1>
             <form onSubmit={ formik.handleSubmit }
                 onChange={ formik.handleChange}
                 className="create-m">
                 <div className="flex-two">
-                    <InputLabel name='name'/>
-                    <InputLabel name='last name'/>
+                    <InputLabel name='name' label='nombre'/>
+                    <InputLabel name='last name' label='apellido'/>
                 </div>
                 <label htmlFor="cedula">Cedula</label>
                 <input type="text" name="cedula" id="cedula" />
@@ -90,6 +91,7 @@ const CreateTeacher = () => {
             </form>
            
         </div>
+        </>
     );
 };
 
